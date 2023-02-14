@@ -2,15 +2,16 @@
 
 A Terraform module to look up secrets in Vault and return their values.
 
-The module expects a map of strings, where the values will be looked up in Vault if they are in the following format:
+The module expects a map of strings as input, where the values will be looked up in Vault if they are in the following format:
 
-vault:{mount}/data/{secret_name}#KEY
+```vault:{mount}/data/{secret_name}#KEY```
 
 Non-matching values will be pruned by default, or otherwise returned unchanged.
 
 Example:
 
-module "vault_lookups" {
+```
+module "database_credentials" {
   source = "samarkand-global/secrets/vault"
   version = "0.1.0"
 
@@ -21,14 +22,16 @@ module "vault_lookups" {
 
   prune = false
 }
+```
 
 Will return the output:
 
-vault_secrets = {
+```
+secret_values = {
   "db_username" = "admin"
   "db_password" = "mytopsecretpassword"
 }
-
+```
 
 ## Requirements
 
